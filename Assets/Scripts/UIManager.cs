@@ -9,6 +9,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI ScoreText;
     [SerializeField] TextMeshProUGUI LifeText;
     [SerializeField] GameObject Gameoverpanel;
+    [SerializeField] GameObject Pausepanel;
     [SerializeField] TextMeshProUGUI ScoreTextInGameover;
     private void Awake()
     {
@@ -36,5 +37,15 @@ public class UIManager : MonoBehaviour
     {
         Gameoverpanel.SetActive(true);
         ScoreTextInGameover.text = GameManager.Instance.score.ToString();
+    }
+
+    public void ShowPausePanel()
+    {
+        Pausepanel.SetActive(true);
+    }
+
+    public void HidePausepanel()
+    {
+        Pausepanel.SetActive(false);
     }
 }
