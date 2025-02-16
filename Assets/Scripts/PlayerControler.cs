@@ -7,9 +7,12 @@ public class PlayerControler : MonoBehaviour
     public Transform[] position;
     public int Positionnow;
     public Animator anim;
+    public AudioSource EffectSound;
+    public AudioClip CrashEffect;
     void Start()
     {
         anim = gameObject.GetComponent<Animator>();
+        EffectSound = gameObject.GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -107,7 +110,8 @@ public class PlayerControler : MonoBehaviour
     {
         if (collision.gameObject.tag.Equals("Meteor"))
         {
-            GameManager.Instance.playerlife -= 1;
+            EffectSound.PlayOneShot(CrashEffect, 1f);
+            //GameManager.Instance.playerlife -= 1;
             Destroy(collision.gameObject);
             UIManager.Instance.UpdateLife();
             //playSound in soundmanager
