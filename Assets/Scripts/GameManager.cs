@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
     public int playerlife;
     float calculatescor;
     public int score;
+    public int hightScore;
 
     public bool GameOver;
     private void Awake()
@@ -23,7 +24,7 @@ public class GameManager : MonoBehaviour
         {
             Destroy(Instance);
         }
-
+        hightScore = PlayerPrefs.GetInt("HightScore");
         Time.timeScale = 1.0f;
     }
 
@@ -42,6 +43,11 @@ public class GameManager : MonoBehaviour
             if (playerlife <= 0)
             {
                 GameOver = true;
+                if(score > hightScore)
+                {
+                    hightScore = score;
+                    PlayerPrefs.SetInt("HightScore",hightScore);
+                }
                 UIManager.Instance.ShowGameOver();
                 Time.timeScale = 0;
             }

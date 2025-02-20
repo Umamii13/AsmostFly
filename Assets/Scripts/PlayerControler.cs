@@ -11,7 +11,6 @@ public class PlayerControler : MonoBehaviour
     public AudioClip CrashEffect;
     void Start()
     {
-        anim = gameObject.GetComponent<Animator>();
         EffectSound = gameObject.GetComponent<AudioSource>();
     }
 
@@ -98,20 +97,14 @@ public class PlayerControler : MonoBehaviour
         }
     }
 
-    public void EndAnimation()
-    {
-        if (anim != null)
-        {
-            anim.SetBool("Flip", false);
-        }
-    }
+    
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag.Equals("Meteor"))
         {
             EffectSound.PlayOneShot(CrashEffect, 1f);
-            //GameManager.Instance.playerlife -= 1;
+            GameManager.Instance.playerlife -= 1;
             Destroy(collision.gameObject);
             UIManager.Instance.UpdateLife();
             //playSound in soundmanager
